@@ -69,7 +69,7 @@ static void movm64imm32(BinArray *arr, uint8_t reg, uint32_t imm)
 	binarr_push(arr, &imm, sizeof(imm));
 }
 
-static void syscall(BinArray *arr)
+static void owa_syscall(BinArray *arr)
 {
 	binarr_push_byte(arr, 0x0F);
 	binarr_push_byte(arr, 0x05);
@@ -85,7 +85,7 @@ int main()
 
 	movm64imm32(&code, 0xC0, 60);
 	movm64imm32(&code, 0xC7, 69);
-	syscall(&code);
+	owa_syscall(&code);
 
 	write_elf643(stdout, code.data, code.lvl, 0);
 }
